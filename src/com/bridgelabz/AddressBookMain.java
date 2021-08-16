@@ -38,6 +38,12 @@ public class AddressBookMain {
         details.setPhoneNumber(sc.nextLong());
 
         contactDetails.add(details);
+    }
+
+    /**
+     * This method is used to display the details
+     */
+    public void display() {
         System.out.println(contactDetails);
     }
 
@@ -112,19 +118,21 @@ public class AddressBookMain {
 
     /**
      * This is the main method which make use of addNewDetails method,
-     * editDetails method and
-     * deleteDetails method
+     * editDetails method, deleteDetails method and
+     * 
      * @param args Unused
      */
     public static void main(String[] args) {
         AddressBookMain contactInfo = new AddressBookMain();
         contactInfo.addNewDetails();
-        int i = 0;
-        while (i == 0) {
+        String answer;
+        int choose;
+        Scanner scanner = new Scanner(System.in);
+        do {
             System.out.println("Welcome To Address Book Program");
             System.out.println("Choose an option : ");
-            System.out.println("1.Add details\n2.Edit Details\n3.Delete Details");
-            int choose = sc.nextInt();
+            System.out.println("1.Add details\n2.Edit Details\n3.Delete Details\n4.Display Contact Details");
+            choose = scanner.nextInt();
             switch (choose) {
                 case 1:
                     contactInfo.addNewDetails();
@@ -135,12 +143,16 @@ public class AddressBookMain {
                 case 3:
                     contactInfo.deleteDetails();
                     break;
+                case 4:
+                    contactInfo.display();
+                    break;
                 default:
-                    i = 1;
                     System.out.println("Wrong option");
                     break;
             }
-        }
+            System.out.println("Do You Wish To Continue?(Y/N)");
+            answer = scanner.next();
+        } while (answer.equals("Y"));
     }
 }
 
