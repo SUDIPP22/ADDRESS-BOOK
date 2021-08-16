@@ -1,28 +1,11 @@
 package com.bridgelabz;
 
-/**
- * Purpose : To Create an Address Book by
- * using getters & setters
- * @author SUDIP PANJA
- * @version 11.0.11
- * @since 2021-08-12
- */
+
 
 class Contacts {
 
     private String firstName, lastName, address, city, state, email;
     private Long zip, phoneNumber;
-
-    public Contacts(String firstName, String lastName, String address, String city, String state, Long zip, Long phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
 
     public String getFirstName() {
         return firstName;
