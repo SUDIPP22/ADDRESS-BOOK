@@ -96,8 +96,24 @@ public class AddressBookMain {
     }
 
     /**
-     * This is the main method which make use of addNewDetails and
-     * editDetails methods.
+     * This method is used to delete the existing person's details
+     */
+    public void deleteDetails() {
+        System.out.println("Confirm Your First Name to Delete Details ");
+        String confirmFirstName = sc.next();
+        for (int index = 0; index < contactDetails.size(); index++) {
+            if (contactDetails.get(index).getFirstName().equals(confirmFirstName)) {
+                contactDetails.remove(index);
+                System.out.println("After Removing The List is :" + contactDetails);
+            } else
+                System.out.println("Enter valid First name ");
+        }
+    }
+
+    /**
+     * This is the main method which make use of addNewDetails method,
+     * editDetails method and
+     * deleteDetails method
      * @param args Unused
      */
     public static void main(String[] args) {
@@ -107,7 +123,7 @@ public class AddressBookMain {
         while (i == 0) {
             System.out.println("Welcome To Address Book Program");
             System.out.println("Choose an option : ");
-            System.out.println("1.Add details.\n2.Edit Details");
+            System.out.println("1.Add details\n2.Edit Details\n3.Delete Details");
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
@@ -115,6 +131,9 @@ public class AddressBookMain {
                     break;
                 case 2:
                     contactInfo.editDetails();
+                    break;
+                case 3:
+                    contactInfo.deleteDetails();
                     break;
                 default:
                     i = 1;
