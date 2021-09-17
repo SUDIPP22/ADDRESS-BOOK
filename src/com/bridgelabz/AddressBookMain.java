@@ -119,6 +119,24 @@ public class AddressBookMain {
         }
     }
 
+    /**
+     * This method is used to check whether the entered person name already exists in address book or not
+     * @param firstName This is the first parameter to this method for checking duplicacy
+     */
+    public void duplicateCheck(String firstName) {
+        for (Contacts contactDetail : contactDetails) {
+            String contactName = contactDetail.getFirstName();
+            if (firstName.equals(contactName)) {
+                System.out.println(contactName + " , you are already present.");
+            } else
+                System.out.println("You can add this person.");
+            break;
+        }
+    }
+
+    /**
+     * This method is used to create multiple address book
+     */
     public void createAddressBook() {
         while (true) {
             System.out.println("Choose what you want to do : ");
@@ -142,10 +160,10 @@ public class AddressBookMain {
                     contactDetails = new ArrayList<>();
                     while (true) {
                         System.out.println("Choose an option : ");
-                        System.out.println("1.Add details\n2.Edit Details\n3.Delete Details\n4.Display Contact Details\n5.Exit");
+                        System.out.println("1.Add details\n2.Edit Details\n3.Delete Details\n4.Display Contact Details\n5.Duplicacy check\n6.Exit");
                         int choose1 = sc.nextInt();
-                        if (choose1 == 5) {
-                            System.out.println("Address book name exist, enter different name");
+                        if (choose1 == 6) {
+                            System.out.println("Exited");
                             break;
                         }
                         switch (choose1) {
@@ -161,8 +179,13 @@ public class AddressBookMain {
                             case 4:
                                 details.display();
                                 break;
+                            case 5:
+                                System.out.println("Enter your first name to check for duplicacy");
+                                String enteredName = sc.next();
+                                details.duplicateCheck(enteredName);
+                                break;
                             default:
-                                System.out.println("Wrong option");
+                                System.out.println("Wrong option!! Choose again");
                                 break;
                         }
                         hashMap.put(addressName, contactDetails);
@@ -179,9 +202,9 @@ public class AddressBookMain {
                         contactDetails = hashMap.get(addressOldName);
                         while (true) {
                             System.out.println("Choose an option : ");
-                            System.out.println("1.Add details\n2.Edit Details\n3.Delete Details\n4.Display Contact Details\n5.Exit");
+                            System.out.println("1.Add details\n2.Edit Details\n3.Delete Details\n4.Display Contact Details\n5.Duplicacy check\n6.Exit");
                             int choose1 = sc.nextInt();
-                            if (choose1 == 5) {
+                            if (choose1 == 6) {
                                 System.out.println("Exited");
                                 break;
                             }
@@ -198,8 +221,13 @@ public class AddressBookMain {
                                 case 4:
                                     details.display();
                                     break;
+                                case 5:
+                                    System.out.println("Enter your first name to check for duplicacy");
+                                    String enteredName = sc.next();
+                                    details.duplicateCheck(enteredName);
+                                    break;
                                 default:
-                                    System.out.println("Wrong option");
+                                    System.out.println("Wrong option!! Choose again");
                                     break;
                             }
                             hashMap.put(addressOldName, contactDetails);
