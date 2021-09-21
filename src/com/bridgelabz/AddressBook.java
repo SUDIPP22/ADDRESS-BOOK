@@ -1,12 +1,13 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
     public ArrayList<Contacts> contactList = new ArrayList<>();
+    public static Map<String, Contacts> nameHashMap = new HashMap<>();
+    public static Map<String, Contacts> cityHashMap = new HashMap<>();
+    public static Map<String, Contacts> stateHashMap = new HashMap<>();
 
     public boolean addContact(Contacts contact) {
         List<Contacts> checkByName = searchByName(contact.getFirstName());
@@ -36,6 +37,19 @@ public class AddressBook {
         return contactList.stream()
                 .filter(person -> person.getState().equalsIgnoreCase(state))
                 .collect(Collectors.toList());
+    }
+
+    // method to view person
+    public static void viewByName(Map<String, Contacts> nameHashMap) {
+        nameHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    public static void viewByCity(Map<String, Contacts> cityHashMap) {
+        cityHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    public static void viewByState(Map<String, Contacts> stateHashMap) {
+        stateHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
     }
 
     // method for edit contact
@@ -157,6 +171,7 @@ public class AddressBook {
     }
 
     public void searchByOptions() {
+        AddressBookMain addressBook = new AddressBookMain();
         Scanner sc = new Scanner(System.in);
         System.out.println("1. By name");
         System.out.println("2. By city");
@@ -180,6 +195,33 @@ public class AddressBook {
                 System.out.println("Enter state: ");
                 String state = sc.nextLine();
                 contactList.forEach(book -> searchByState(state).forEach(System.out::println));
+                break;
+            case 4:
+                return;
+            default:
+                System.out.println("INVALID CHOICE!");
+        }
+    }
+
+    //method for viewing element by option
+    public static void viewByOption(Map<String, AddressBook> addressBookMap) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. View By name");
+        System.out.println("2. View By city");
+        System.out.println("3. View By state");
+        System.out.println("4. Back");
+        System.out.print("Enter Your choice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        switch (choice) {
+            case 1:
+                viewByName(nameHashMap);
+                break;
+            case 2:
+                viewByCity(cityHashMap);
+                break;
+            case 3:
+                viewByState(stateHashMap);
                 break;
             case 4:
                 return;
